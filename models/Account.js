@@ -17,8 +17,8 @@ var AccountSchema = new Schema({
     password:String,
     email:{
         type:String,
-        required:true,
-        unique:true
+        required:[true,'Email is not valid'],
+        unique:[true,'Email already exists']
     },
 
 })
