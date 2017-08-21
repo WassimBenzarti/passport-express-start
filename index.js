@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname,'public/frontend/dist')));
 app.use('/api', routes);
 
 app.get('*',function(req,res){
-    res.json({success:1,msg:'Nothing here'})
+    res.sendFile(path.resolve(__dirname, '/public/frontend/dist/index.html'))
 })
 
 mongoose.connect(config.mongoURI,function(){
