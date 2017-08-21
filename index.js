@@ -46,7 +46,10 @@ app.get('*',function(req,res){
 })
 
 mongoose.connect(config.mongoURI,function(){
-    app.listen(config.port,function(){
+
+    var port = process.env.PORT || config.port;
+
+    app.listen(port,function(){
         console.log("Node app running on",config.port);
     })
 })
