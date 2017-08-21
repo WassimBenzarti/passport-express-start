@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon",
+        "deploy":"git add . && git commit -am autocommit && cd public\\frontend && ng build && git push heroku master",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Wassim Benzarti",
