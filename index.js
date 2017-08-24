@@ -1,3 +1,4 @@
+// Native Modules
 var path = require('path');
 
 // Config
@@ -10,9 +11,7 @@ var app = express();
 
 // Passport
 var passport = require('passport');
-var passportLocalStrategy = require('passport-local').Strategy;
 var Account = require('./models/Account');
-//var passport = require('passport-local-mongoose');
 
 // Mongoose
 var mongoose = require('mongoose')
@@ -20,6 +19,7 @@ var mongoose = require('mongoose')
 // Routes
 var routes = require('./routes/routes');
 
+// Express config
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(require('express-session')({
@@ -28,7 +28,7 @@ app.use(require('express-session')({
     saveUninitialized:false
 }))
 
-// Configure passport
+// Passport config
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(Account.createStrategy());
@@ -45,12 +45,17 @@ app.get('*',function(req,res){
     res.sendFile(path.resolve(__dirname, '/public/frontend/dist/index.html'))
 })
 
+// Database connection
 mongoose.connect(config.mongoURI,function(){
-
+    // Start server
     var port = process.env.PORT || config.port;
-
     app.listen(port,function(){
         console.log("Node app running on",config.port);
+    }).on('error',function(){
+        console.log('Trying another port',config.testingPort);
+        app.listen()
     })
+
 })
 
+exports.app = app

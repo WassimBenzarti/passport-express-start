@@ -6,11 +6,15 @@
     "scripts": {
         "start": "node index.js",
         "dev": "nodemon",
-        "deploy":"cd public\\frontend && ng build && git add . && git commit -am autocommit && git push heroku master",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "deploy": "cd public\\frontend && ng build && git add . && git commit -am autocommit && git push heroku master",
+        "test": "mocha --timeout 10000"
     },
     "author": "Wassim Benzarti",
     "license": "ISC",
+    "apidoc": {
+        "title": "Custom apiDoc browser title",
+        "url": "/api"
+    },
     "dependencies": {
         "body-parser": "^1.17.2",
         "express": "^4.15.4",
@@ -18,9 +22,12 @@
         "mongoose": "^4.11.7",
         "passport": "^0.4.0",
         "passport-local": "^1.0.0",
-        "passport-local-mongoose": "^4.1.0"
+        "passport-local-mongoose": "^4.1.0",
+        "validator": "^8.1.0"
     },
     "devDependencies": {
+        "chai": "^4.1.1",
+        "chai-http": "^3.0.0",
         "nodemon": "^1.11.0"
     }
 }
